@@ -2,6 +2,7 @@ import socket
 import sys
 import hashlib
 import md5
+import random
 password = 'qwerasdf123#'
 
 def HashPass(password):
@@ -11,10 +12,25 @@ def HashPass(password):
     m.update(password)
     return bin(int(m.hexdigest(), 16))[2:]
 
-def BuildRandomEq(size):
+def BuildRandomEq():
     #size : number of bits in the hashed password
-    hashed_password = HashPass(password)
+    boolean_eq = []
+    hashed_password = HashPass(password)[:4]
+    size = len(hashed_password) #technically just 4 for now. Hardcoded in previous statement.
+    for i in range (0,size):
+        if random.randrange(0,100)%2 == 1:
+            boolean_eq.append('!')
+        boolean_eq.append(hashed_password[i])
+        if i !=s size-1:
+            if random.randrange(0,100)%2 == 1:
+                boolean_eq.append('&')
+            else:
+                boolean_eq.append('|')
+    return boolean_eq
 
+
+
+print BuildRandomEq()
 ip = raw_input("Enter the IP address of SERVER:")
 port = raw_input("Enter the PORT NO :")
 
