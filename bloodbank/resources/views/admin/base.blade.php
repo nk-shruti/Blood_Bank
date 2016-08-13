@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>AIESEC</title>
+  <title>Blood Donation</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="_token" content="{!! csrf_token() !!}"/>
@@ -82,14 +82,13 @@
             <span class="icon-bar"></span>                        
           </button>
 
-          <span class="navbar-brand logo"><a href="{{ action('ogcController@registeredView') }}" style="color:white;text-decoration: none !important;">AIESEC</a></span>
+          <span class="navbar-brand logo"><a href="{{ action('AdminController@homeView') }}" style="color:white;text-decoration: none !important;">BloodDonor</a></span>
         </div>
                
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li><a href="{{ action('EventsController@eventsForm') }}">Upload Events</a></li>
-            <li><a href="{{ action('ProjectsController@projectsForm') }}">Upload Projects</a></li>
-            <li><a href="{{ action('ogcController@registeredView') }}">Registrations</a></li>   
+            <li><a href="{{ action('RequirementController@reqForm') }}">Enter Requirement</a></li>
+            <li><a href="{{ action('signupController@registeredView') }}">Registrations</a></li>   
             <li><a href="{{ action('AdminController@logout') }}">Logout</a></li>   
 
           </ul>

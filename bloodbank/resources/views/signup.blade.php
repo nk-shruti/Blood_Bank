@@ -33,7 +33,7 @@
 
   	<div class="form-group">
     	<label for="bloodgroup">BloodGroup:</label>
-    	<input type="text" class="form-control" id="bloodgroup" name="bloodgroup" placeholder="Enter the name of your College" required>
+    	<input type="text" class="form-control" id="bloodgroup" name="bloodgroup" placeholder="Enter your blood group" required>
   	</div>
 
    		<div class="form-group">
