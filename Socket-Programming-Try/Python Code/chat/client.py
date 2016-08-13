@@ -2,7 +2,7 @@ import socket
 import sys
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_address = ('localhost', 10002)
-print >>sys.stderr, 'connecting to %s port %s' % server_address
+print 'connecting to %s port %s' % server_address
 sock.connect(server_address)
 try:
     while 1:
