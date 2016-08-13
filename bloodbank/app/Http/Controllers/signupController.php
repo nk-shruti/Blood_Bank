@@ -52,12 +52,12 @@ class signupController extends Controller
 		return view('onRegistration');
 	}
 
-	// public function registeredView()
-	// {
-	// 	$users= ogc::orderBy('created_at','desc')
-	// 				->get();
- //    	return view('admin.home')->with('users', $users);
-	// }
+	public function registeredView()
+	{
+		$donors= Donors::orderBy('created_at','desc')
+					->get();
+    	return view('admin.registeredUsers')->with('donors', $donors);
+	}
 
 	// public function userView(Request $request)
 	// {  

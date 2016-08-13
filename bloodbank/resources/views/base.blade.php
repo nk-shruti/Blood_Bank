@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>AIESEC</title>
+  <title>Blood Donation</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="{{ URL::asset('/assets/css/jquery-ui.min.css') }}" rel="stylesheet">

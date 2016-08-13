@@ -16,17 +16,21 @@
       <tr>
         <th>Id</th>
         <th>Name</th>
-        <th>Department</th>
-        <th>College</th>
+        <th>BloodGroup</th>
+        <th>LastDonated</th>
+        <th>Contact</th>
+        <th>Address</th>
       </tr>
     </thead>
     <tbody>
-    @foreach ($users as $user)
-        <tr id="{{ $user->id }}">
-            <td> {{ $user->id }} </td>
-            <td> {{ $user->name}} </td>
-            <td> {{ $user->department }} </td>
-            <td> {{ $user->college }} </td>
+    @foreach ($donors as $donor)
+        <tr id="{{ $donor->id }}">
+            <td> {{ $donor->id }} </td>
+            <td> {{ $donor->Username}} </td>
+            <td> {{ $donor->BloodGroup }} </td>
+            <td> {{ $donor->LastDonated }} </td>
+            <td> {{ $donor->Contact }} </td>
+            <td> {{ $donor->Address }} </td>
         </tr>
     @endforeach 
 
@@ -40,73 +44,41 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title" id="userModalLabel">User Details</h3>
+        <h3 class="modal-title" id="userModalLabel">Donor Details</h3>
       </div>
       <div class="modal-body">
        
       <table class="table table-hover table-bordered table-striped">
         <thead>
-            <th class="col-md-3">ID</th>
-            <th class="col-md-3">Name</th>
-            <th class="col-md-3">Department</th>
-            <th class="col-md-3">College</th>
+            <th class="col-md-4">ID</th>
+            <th class="col-md-4">Name</th>
+            <th class="col-md-4">BloodGroup</th>
         </thead>
         <tbody>
             <tr>
                 <td id="id"></td>
                 <td id="name"></td>
-                <td id="department"></td>
-                <td id="college"></td>
+                <td id="bloodgroup"></td>
             </tr>
         </tbody>
-      </table>  
-
-      
-
-      <table class="table table-hover table-bordered table-striped">
-        <thead>
-            <th class="col-md-12">Intent</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td id="intent"></td>
-            </tr>
-        </tbody>
-      </table>  
+      </table> 
 
       
         <table class="table table-hover table-bordered table-striped">
             <thead>
-                <th class="col-md-6">Phone No.</th>
-                <th class="col-md-6">E-mail</th>
+                <th class="col-md-4">LastDonated</th>
+                <th class="col-md-4">Contact</th>
+                <th class="col-md-4">Address</th>
             </thead>
             <tbody>
                 <tr>
-                    <td id="phoneNo"></td>
-                    <td id="email"></td>
+                    <td id="lastdonated"></td>
+                    <td id="contact"></td>
+                    <td id="address"></td>
                 </tr>
             </tbody>
 
-        </table>
-
-        <table class="table table-hover table-bordered table-striped">
-            <thead>
-
-            <th class="col-md-4">Have a Passport</th>
-            <th class="col-md-4">Have Parents' Consent</th>
-            <th class="col-md-4">Have Travelled Abroad</th>
-            
-        </thead>
-        <tbody>
-            <tr>
-                
-                <td id="passport"></td>
-                <td id="consent"></td>
-                <td id="abroad"></td>
-               
-            </tr>
-        </tbody>
-      </table>  
+        </table> 
       </div>
     </div>
   </div>

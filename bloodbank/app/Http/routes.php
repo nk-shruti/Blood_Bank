@@ -19,17 +19,14 @@ Route::group(['middleware' => 'adminauth'], function () {
     
     Route::get('admin/home', function()
         {
-            return view('admin.home');
+            return view('admin.RequirementForm');
         });	
 
-	Route::post('uploadEvents','EventsController@uploadEvents');
-	Route::get('eventsForm','EventsController@eventsForm');
+	Route::post('requirementForm','RequirementController@requiredBG');
+	
+	Route::get('reqForm','RequirementController@reqForm');
 
-	Route::get('uploadProjects','ProjectsController@uploadProjects');
-	Route::get('projectsForm','ProjectsController@projectsForm');
-
-	Route::get('viewRegistrations','ogcController@registeredView');
-	Route::get('userView','ogcController@userView');
+	Route::get('userView','signupController@registeredView');
 	
 	Route::get('logout','AdminController@logout');
 
@@ -42,10 +39,6 @@ Route::get('/', function () {
 });
 
 Route::get('home', 'AdminController@homeView');
-Route::get('aboutUs','AdminController@aboutUs');
-Route::get('projects', 'ProjectsController@projectsView');
-Route::get('events','EventsController@eventsView');
-Route::get('event','EventsController@event');
-Route::get('ogc','signupController@signupForm');
+Route::get('signup','signupController@signupForm');
 Route::post('signup','signupController@signup');
 

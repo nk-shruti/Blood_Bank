@@ -32,14 +32,10 @@ function modalInject(json)
 {   
 	
 	$('#id').html(json.id);
-	$('#name').html(json.name);
-	$('#department').html(json.department);
-	$('#college').html(json.college);
-	$('#intent').html(json.intent);
-	$('#phoneNo').html(json.phoneNo);
-	$('#email').html(json.email);
-	$('#passport').html(json.passport);
-	$('#abroad').html(json.abroad);
-	$('#consent').html(json.consent);
+	$('#name').html(json.Username);
+	$('#bloodgroup').html(json.BloodGroup);
+	$('#lastdonated').html(json.LastDonated);
+	$('#contact').html(json.Contact);
+	$('#address').html(json.Address);
 	$('#userModal').modal('show');
 }

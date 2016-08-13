@@ -32,8 +32,7 @@ class AdminController extends Controller
     	if(count($user)==1)
     	{
     		Session::put('username',$username);
-    		//return view('admin.home');
-            return redirect('viewRegistrations');
+    		return view('admin.home');
     	}
     	else
     	{
@@ -41,12 +40,6 @@ class AdminController extends Controller
     	}
     }
 
-
-    // public function viewRegistrations()
-    // {
-    //     $registrations = Ogc::all();
-    //     return view('admin.home')->with('registrations',$registrations);
-    // }
 
     public function logout()
     {
@@ -56,11 +49,7 @@ class AdminController extends Controller
 
     public function homeView()
     {
-        return view('home');
+        return view('admin.home');
     }
 
-    public function aboutUs()
-    {
-        return view('aboutus');
-    }
 }
