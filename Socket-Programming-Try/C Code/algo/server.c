@@ -43,7 +43,7 @@ exit(1);
 
 int main(int argc, char *argv[])
 {
-int sockfd, newsockfd, portno,isverified=1;
+int sockfd, newsockfd, portno,isverified=1,iteration_count=0;
 socklen_t clilen;
 char buffer[256],username[256];
 char password[]="qwerasdf123#";
@@ -83,6 +83,7 @@ if (n < 0)
 //Run algorithm
 while(isverified)
 {
+	iteration_count++;
 	//call encrypt function to encrypt the password
 	encrypt(password);
 
@@ -106,7 +107,15 @@ while(isverified)
 	printf("Client: %s\n",buffer);
 
 	isverified=verifyclient(buffer);
-
+	if(iteration_count>40)
+	{
+		bzero(buffer,256);
+		strcpy(buffer,"Authenticated");
+		n = write(newsockfd,buffer,strlen(buffer));
+		if (n < 0) 
+			error("ERROR writing to socket");
+		break;
+	}
 }
 close(newsockfd);
 close(sockfd);

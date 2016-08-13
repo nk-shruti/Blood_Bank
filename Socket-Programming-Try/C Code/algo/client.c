@@ -83,7 +83,7 @@ while(1)
 	n = read(sockfd,buffer,255);
 	if (n < 0)
 		error("ERROR reading from socket");
-	printf("Server: %s",buffer);
+	printf("Server: %s\n",buffer);
 
 	strcpy(bool_equation,buffer);
 	clientsolu=getclientsolu();
@@ -95,7 +95,7 @@ while(1)
 	n = write(sockfd,buffer,strlen(buffer));
 	if (n < 0)
 		error("ERROR writing to socket");
-	key++;
+	// key++;
 }
 close(sockfd);
 return 0;
