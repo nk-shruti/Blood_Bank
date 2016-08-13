@@ -8,8 +8,12 @@ def HashPass(password):
 	m.update(password)
 	return bin(int(m.hexdigest(), 16))[2:]
 
+
+ip = raw_input("Enter the IP address of SERVER from CLIENT:")
+port = raw_input("Enter the PORT NO :")
+
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_address = ('localhost', 10000)
+server_address = (ip, int(port))
 print 'connecting to %s port %s' % server_address
 sock.connect(server_address)
 

@@ -3,17 +3,25 @@ import sys
 import hashlib
 import md5
 password = 'qwerasdf123#'
-#Hash the Password same as Client
 
 def HashPass(password):
+    #Hash the Password same as Client
     #for now return the first four bits of excrypted password
     m = md5.new()
     m.update(password)
     return bin(int(m.hexdigest(), 16))[2:]
 
+def BuildRandomEq(size):
+    #size : number of bits in the hashed password
+    hashed_password = HashPass(password)
+
+ip = raw_input("Enter the IP address of SERVER:")
+port = raw_input("Enter the PORT NO :")
+
+
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_address = ('localhost', 10000)
+server_address = (ip, int(port))
 print 'starting up on %s port %s' % server_address
 sock.bind(server_address)
 sock.listen(1)
