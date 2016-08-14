@@ -41,4 +41,6 @@ Route::get('/', function () {
 Route::get('home', 'AdminController@homeView');
 Route::get('signup','signupController@signupForm');
 Route::post('signup','signupController@signup');
-
+Route::get('get-updates',   'TelegramController@getUpdates');
+Route::get('send-message',  'TelegramController@getSendMessage');
+Route::post('send-message', 'TelegramController@postSendMessage');
