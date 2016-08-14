@@ -18,7 +18,7 @@ class CreateDonorsTable extends Migration
             $table->string('Password',100);
             $table->string('BloodGroup',10);
             $table->date('LastDonated');
-            $table->integer('Contact');
+            $table->double('Contact');
             $table->string('Address',256);
             $table->timestamps();
         });
