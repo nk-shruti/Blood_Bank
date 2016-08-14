@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 use App\Donors;
 use DB;
 
@@ -30,9 +31,9 @@ class RequirementController extends Controller
 		$quantity = $request->get('quantity');
 
 		$donors = Donors::where('bloodgroup','=', $bloodgroup)
+						->where('lastdonated', '<', $now->subMonths(3))
     					->get();
-    	// $count = Donors::where('bloodgroup','=',$bloodgroup)->count;
-    	// dd($donors);
+    	
     	for($i=0;$i<count($donors);$i++) 	
     	{
     		$ph = $donors[$i]['Contact'];
@@ -41,7 +42,7 @@ class RequirementController extends Controller
 		    // For promotional, this will be ignored by the SMS gateway
 		    'From'   => 'SAMPLE',
 		    'To'    => $ph,
-		    'Body'  => 'EMERGANCY! Blood needed!'
+		    'Body'  => 'EMERGENCY! Blood of type '.$bloodgroup.' needed! Location : ABC Hospital Chennai,India'
 			);
 
 			$exotel_sid = "nittrichy1"; // Your Exotel SID - Get it from here: http://my.exotel.in/Exotel/settings/site#api-settings
@@ -64,10 +65,42 @@ class RequirementController extends Controller
 
 			curl_close($ch);
     		
-    	}				
-    		//insert function to send messages to everyone
-    	// die();			
-    	return view('admin.registeredUsers')->with('donors', $donors);
+    	}			
+
+    	for($i=0;$i<count($donors);$i++) 	
+    	{
+			$post_data = array(
+			    'From' => "09677177234",
+			    'To' => $donors[$i]['Contact'],
+			    'CallerId' => "09243422233",
+			    'TimeLimit' => "<time-in-seconds> (optional)",
+			    'TimeOut' => "<time-in-seconds (optional)>",
+			    'CallType' => "promo" //Can be "trans" for transactional and "promo" for promotional content
+			);
+			 
+			$exotel_sid = "nitt5"; // Your Exotel SID - Get it from here: http://my.exotel.in/settings/site#api-settings
+			$exotel_token = "25774923fb921f9af0674e32ac5c5a0d4f7b678c "; // Your exotel token - Get it from here: http://my.exotel.in/settings/site#api-settings
+			 
+			$url = "https://".$exotel_sid.":".$exotel_token."@twilix.exotel.in/v1/Accounts/".$exotel_sid."/Calls/connect";
+			 
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_VERBOSE, 1);
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_FAILONERROR, 0);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post_data));
+			 
+			$http_result = curl_exec($ch);
+			$error = curl_error($ch);
+			$http_code = curl_getinfo($ch ,CURLINFO_HTTP_CODE);
+			 
+			curl_close($ch);
+			 
+			print "Response = ".print_r($http_result);	
+		}
+	   	return view('admin.registeredUsers')->with('donors', $donors);
     }
 
     public function reqForm()
